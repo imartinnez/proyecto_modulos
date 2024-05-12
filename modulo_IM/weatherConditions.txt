@@ -1,0 +1,9 @@
+Fair
+Fog
+T-Storm
+Rain
+Heavy Rain
+Snow
+Heavy Snow
+Hail
+Tornado
