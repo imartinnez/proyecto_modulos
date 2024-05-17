@@ -11,8 +11,8 @@ using namespace std;
 int main() {
 
     carModel a;
-    carModel b;
     CarModelList l1(a.brand, a.year);
+    Database db;
     
 
     cout << "Bienvenido, escoja su marca de coche entre la siguiente lista:" << endl; //TIENE QUE SER EN INGLÉS
@@ -21,8 +21,30 @@ int main() {
     cout << "Ahora introduzca el año de fabricación de su coche:" << endl;
     cin >> a.year;
     l1.setCarDetails(a.brand, a.year);
-    b = l1.getCarDetails();
-    cout << b.brand << "    " << b.year; 
+    cout << l1.getCarBrand() << "    " << l1.getCarYear() << "    " << l1.getRangeLevel();
+
+    /*
+    db.loadCSV();
+    vector<vector<string>> datos = db.getData();
+    vector<string> encabezados = db.getHeaders();
+
+    cout << "Encabezados:" << endl;
+    for (string header : encabezados) {
+        cout << header << "\t";
+    }
+    cout << endl;
+
+
+    cout << "Datos:" << endl;
+    for (vector<string> fila : datos) {
+        for (string celda : fila) {
+            cout << celda << "\t";
+        }
+        cout << endl;
+    }
+    */
+
+
     
 
 

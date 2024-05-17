@@ -6,8 +6,12 @@ CarModelList::CarModelList(string brand, int year) {
     this->carDetails.year = year;
 }
 
-carModel CarModelList::getCarDetails(){
-    return carDetails;
+string CarModelList::getCarBrand() {
+    return carDetails.brand;
+}
+
+int CarModelList::getCarYear() {
+    return carDetails.year;
 }
 
 void CarModelList::setCarDetails(string brand, int year) {
@@ -16,66 +20,53 @@ void CarModelList::setCarDetails(string brand, int year) {
 }
 
 void CarModelList::showBrands() {
-    vector<string> brands;
+    ifstream file("modulo_IM/carTypes.txt");
     string line;
-
-    ifstream filename("modulo_IM/carModels.txt");
-    if (!filename.is_open()) {
-        cout << "Erroooor con el archivo" << endl;
-        exit (0);
-    }
-
+    bool header = true;
+    int pos_coma;
     
-    while (getline(filename, line)) {
-        // Separar la línea en marca y tipo
-        size_t pos = line.find("-");
-        
-        if (pos != string::npos) {
-            // Si se encuentra el guion, agregar solo la marca
-            string brand = line.substr(0, pos);
-            brands.push_back(brand);
-        } else {
-            // Si no se encuentra el guion, agregar toda la línea como marca
-            brands.push_back(line);
+    if (file.is_open()) {
+        while (getline(file, line)) {
+            if(header){
+                header = false;
+            }
+            else{
+                // Buscar la posición de la coma
+                pos_coma = line.find(",");
+                cout << line.substr(0, pos_coma) << endl;
+            }
         }
-    }
-
-    cout << "Marcas de coches:" << endl;
-    for (const string& marca : brands) {
-        cout << marca << endl;
+        file.close();
+    } else {
+        cout << "No se pudo abrir el archivo." << endl;
     }
 
 }
 
-string CarModelList::getRangeLevel(carModel carDetails) {
-    
+string CarModelList::getRangeLevel() {
+    ifstream file("modulo_IM/carTypes.txt");
     string line;
-    string tipe;
-    bool brand_found = false;
+    string brand;
+    bool found = false;
+    int pos_coma;
 
-    ifstream filename("modulo_IM/carTipes.txt");
-    if (!filename.is_open()) {
-        return "Error con el archivo";
-    }
+    if (file.is_open()) {
+        while (getline(file, line)) {
+            pos_coma = line.find(",");
+            brand = line.substr(0, pos_coma);
 
-    while (getline(filename, line)) {
-        // Si la línea coincide con la marca buscada
-        if (line == carDetails.brand) {
-            // Leer la siguiente línea que contiene el tipo
-            if (getline(filename, tipe)) {
-                brand_found = true;
-                break;
+            if (brand == carDetails.brand) {
+                found = true;
+                return line.substr(pos_coma + 1); // Devolver el tipo de la marca
             }
         }
-    }
-
-    filename.close();
-
-    // Si se encontró la marca, devolver el tipo
-    if (brand_found) {
-        return tipe;
-    } else {
-        // Si no se encontró la marca, devolver un mensaje indicando que no se encontró
+        file.close();
+        if (!found) {
         return "Marca no encontrada";
-    }
+        }
+    } 
+    
+    cout << "No se pudo abrir el archivo." << endl;
+    return "-1";
+    
 }

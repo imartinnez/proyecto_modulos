@@ -1,0 +1,37 @@
+Brand,Type
+Alfa Romeo,high
+Audi,high
+BMW,high
+Cadillac,high
+Chevrolet,medium
+Citroen,medium
+Ferrari,luxury
+Fiat,low
+Ford,medium
+Honda,medium
+Hyundai,medium
+Infiniti,high
+Jaguar,high
+Jeep,medium
+Kia,medium
+Lamborghini,luxury
+Land Rover,high
+Lexus,high
+Lincoln,high
+Maserati,luxury
+Mazda,medium
+Mercedes-Benz,high
+Mini,medium
+Mitsubishi,medium
+Nissan,medium
+Peugeot,medium
+Porsche,luxury
+Renault,medium
+Skoda,low
+Smart,low
+Subaru,medium
+Suzuki,low
+Tesla,high
+Toyota,medium
+Volkswagen,medium
+Volvo,high

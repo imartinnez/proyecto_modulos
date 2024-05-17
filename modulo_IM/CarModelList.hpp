@@ -14,11 +14,12 @@ private:
 
 public:
     CarModelList(string brand, int year);
-    carModel getCarDetails();
+    string getCarBrand();
+    int getCarYear();
     void setCarDetails(string brand, int year);
     
     void showBrands();
-    string getRangeLevel(carModel carDetails);
+    string getRangeLevel();
 };
 
 #endif //CAR_MODEL_LIST_HPP
