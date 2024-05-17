@@ -16,10 +16,10 @@ private:
 
 public:
     Database();
-    const vector<vector<string>>& getData() const;
-    const vector<string>& getHeaders() const;
+    vector<vector<string>> getData();
+    vector<string> getHeaders();
 
-    void loadCSV(const string& filename);
+    void loadCSV();
 };
 
 #endif //DATABASE_HPP

@@ -4,16 +4,16 @@ using namespace std;
 
 Database::Database() {};
 
-const vector<vector<string>>& Database::getData() const {
+vector<vector<string>> Database::getData() {
     return data;
 }
-const vector<string>& Database::getHeaders() const {
+vector<string> Database::getHeaders() {
     return headers;
 }
 
 
-void Database::loadCSV(const string& filename) {
-    ifstream file(filename);
+void Database::loadCSV() {
+    ifstream file("modulo_dev/DATABASE.csv");
     if (!file.is_open()) {
         cout << "El archivo no se ha podido abrir" << endl;
         return;
@@ -52,23 +52,21 @@ void Database::loadCSV(const string& filename) {
 
 /*MAIN DE PRUEBA PARA COMPROBAR SI FUNCIONA
 int main() {
-    Database& db = Database::getInstance(); //Se hace uso del Singleton
-    db.loadCSV("BDexcel.csv");             
-
-    const vector<vector<string>>& datos = db.getData();       // Obtener los datos cargados
-    const vector<string>& encabezados = db.getHeaders();       // Obtener los encabezados del archivo
-
+    Database db;
+    db.loadCSV();
+    vector<vector<string>> datos = db.getData();
+    vector<string> encabezados = db.getHeaders();
 
     cout << "Encabezados:" << endl;
-    for (const auto& header : encabezados) {
+    for (string header : encabezados) {
         cout << header << "\t";
     }
     cout << endl;
 
 
     cout << "Datos:" << endl;
-    for (const auto& fila : datos) {
-        for (const auto& celda : fila) {
+    for (vector<string> fila : datos) {
+        for (string celda : fila) {
             cout << celda << "\t";
         }
         cout << endl;
