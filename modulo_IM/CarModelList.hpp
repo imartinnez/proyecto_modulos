@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include "../modulo_dev/Database.hpp"
-#include "carModel.hpp"
+#include "../modulo_IM/carModel.hpp"
 
 using namespace std;
 
@@ -13,6 +13,7 @@ private:
     carModel carDetails;
 
 public:
+    CarModelList();
     CarModelList(string brand, int year);
     string getCarBrand();
     int getCarYear();

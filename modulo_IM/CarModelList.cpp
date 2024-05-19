@@ -1,6 +1,8 @@
 #include "CarModelList.hpp"
 using namespace std;
 
+CarModelList::CarModelList() {}
+
 CarModelList::CarModelList(string brand, int year) {
     this->carDetails.brand = brand;
     this->carDetails.year = year;

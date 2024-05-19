@@ -2,23 +2,26 @@
 #define FILE_GENERATOR_HPP
 
 #include <iostream>
+#include <fstream>
 #include <string>
-#include "modulo_dev/Database.hpp"
-#include "carModel.hpp"
-#include "Policy.hpp"
+#include <ctime>
+#include "../modulo_dev/Database.hpp"
+#include "../modulo_IM/carModel.hpp"
+#include "../modulo_IM/Policy.hpp"
 using namespace std;
 
 class FileGenerator {
 private:
-    string fileName;
-    Policy policy;
+    string licensePlate;
+    carModel carDetails;
+    string name;
+    string id;
+    double price;
 
 public:
-    FileGenerator(string fileName, Policy policy);
-    void setFileName(string fileName);
-    void setPolicy(Policy policy);
-
-     void generatePolicy(Policy policy);
+    FileGenerator(string licensePlate, carModel carDetails, string name, string id, double price);
+    void generatePolicy();
+    void showPolicy();
 };
 
 

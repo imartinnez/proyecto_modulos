@@ -1,36 +1,22 @@
 #include "Policy.hpp"
 using namespace std;
 
-Policy::Policy(string name, string location, string carRangeLevel, int riskLevel, double price, vector<string> relevantDetails) {
-    this->name = name;
-    this->location = location;
-    this->carRangeLevel = carRangeLevel;
-    this->riskLevel = riskLevel;
+Policy::Policy(int policyType, double price, string carRangeLevel, string location, carModel cardetails, int driverLicenceAge) {
+    this->policyType = policyType;
     this->price = price;
-    this->relevantDetails = relevantDetails;
+    this->carRangeLevel = carRangeLevel;
+    this->location = location;
+    this->carDetails.brand = carDetails.brand;
+    this->carDetails.year = carDetails.year;
+    this->driverLicenceAge = driverLicenceAge;
 }
 
-string Policy::getName() {
-    return name;
-}
+double Policy::calculatePolicyPrice() {
+    Database db;
+    PriceCalculator pc(db);
 
-string Policy::getLocation() {
-    return location;
-}
+    price = pc.calculatePolicyBasePrice(carDetails, carRangeLevel, driverLicenceAge, policyType);
+    pc.calculatePolicyPrice(location, price);
 
-string Policy::getcarRangeLevel() {
-    return carRangeLevel;
-}
-
-int Policy::getRiskLevel() {
-    return riskLevel;
-}
-
-double Policy::getPrice() {
     return price;
-}
-
-void updateDetails(vector<string> relevantDetails) {
-
-    
 }

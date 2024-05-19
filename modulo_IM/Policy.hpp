@@ -4,30 +4,26 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "modulo_dev/Database.hpp"
-#include "carModel.hpp"
-#include "PriceCalculator.hpp"
+#include "..//modulo_dev/Database.hpp"
+#include "../modulo_IM/carModel.hpp"
+#include "../modulo_IM/PriceCalculator.hpp"
 using namespace std;
 
 class Policy {
 private:
-    string name;
-    string location;
-    carModel carDetails;
-    string carRangeLevel; //un rango de low, medium, high, xhigh del coche
-    int riskLevel;
+    int policyType; //0-terceros    1-todo riesgo 
     double price;
-    vector<string> relevantDetails;
+    string carRangeLevel; // CLASE carModelList
+    string location; //DRIVER
+    carModel carDetails; //DRIVER
+    int driverLicenceAge; //DRIVER
+    
 
 public:
-    Policy(string name, string location, string carRangeLevel, int riskLevel, double price, vector<string> relevantDetails);
-    string getName();
-    string getLocation();
-    string getcarRangeLevel();
-    int getRiskLevel();
-    double getPrice();
-    void updateDetails(vector<string> relevantDetails);
-
+    Policy(int policyType, double price, string carRangeLevel, string location, carModel cardetails, int driverLicenceAge);
+    double calculatePolicyPrice();
+    
+    
 };
 
 #endif //POLICY_HPP
