@@ -1,10 +1,18 @@
+/**
+ * @author: Luis Sánchez
+ * 
+ * @module: modulo_LS
+ * 
+ * @class City
+ * 
+ * The class City is used for the examination and count of each selected city
+ * where its study the state and county for a better information
+ */
 #include "City.hpp"
-#include <iostream>
-#include <string>
 
 using namespace std;
 
-City::City(const string& cityName, int numAccidents) : name(cityName), numAcc(numAccidents) {}
+City::City(){}
 
 string City::GetName(){
     return name;
@@ -13,21 +21,15 @@ void City::SetName(string cityName){
     name = cityName;
 }
 
-int City::GetNumAccidents(){
-    return numAcc;
-}
-void City::SetNumAccidents(int num){
-    numAcc = num;
-}
-
-string City::getCountyByCity(string cityName, Database& db){
-    const vector<vector<string>>& data = db.getData();
-    const vector<string>& headers = db.getHeaders();
+//Get the county by the selected city
+string City::getCountyByCity(string cityName, Database db){
+    vector<vector<string>> data = db.getData();
+    vector<string> headers = db.getHeaders();
 
     int cityIndex = -1;
     int countyIndex = -1;
 
-    // Buscar los índices de las columnas 'City' y 'State' en los encabezados
+    // Find the indices of the 'City' and 'County' columns in the headers
     for (int i = 0; i < headers.size(); ++i) {
         if (headers[i] == "City") {
             cityIndex = i;
@@ -36,9 +38,9 @@ string City::getCountyByCity(string cityName, Database& db){
         }
     }
 
-    // Buscar la ciudad y devolver el estado correspondiente
+    // Search for the city and return the corresponding county
     for (int i = 0; i < data.size(); i++) {
-        const vector<string>& row = data[i];
+        vector<string> row = data[i];
         if (row[cityIndex] == cityName) {
             return row[countyIndex];
         }
@@ -46,14 +48,13 @@ string City::getCountyByCity(string cityName, Database& db){
 
     return "Unknown County";
 }
-string City::getStateByCity(string cityName, Database& db){
-    const vector<vector<string>>& data = db.getData();
-    const vector<string>& headers = db.getHeaders();
+string City::getStateByCity(string cityName, Database db){
+    vector<vector<string>> data = db.getData();
+    vector<string> headers = db.getHeaders();
 
     int cityIndex = -1;
     int stateIndex = -1;
 
-    // Buscar los índices de las columnas 'City' y 'State' en los encabezados
     for (int i = 0; i < headers.size(); ++i) {
         if (headers[i] == "City") {
             cityIndex = i;
@@ -62,9 +63,8 @@ string City::getStateByCity(string cityName, Database& db){
         }
     }
 
-    // Buscar la ciudad y devolver el estado correspondiente
     for (int i = 0; i < data.size(); i++) {
-        const vector<string>& row = data[i];
+        vector<string> row = data[i];
         if (row[cityIndex] == cityName) {
             return row[stateIndex];
         }
@@ -73,10 +73,10 @@ string City::getStateByCity(string cityName, Database& db){
     return "Unknown State";
 }
 
-int City::CountAccidentsInCity(string cityName, Database& db){
+int City::CountAccidentsInCity(string cityName, Database db){
     int count = 0;
-    const vector<vector<string>>& data = db.getData();
-    const vector<string>& headers = db.getHeaders();
+    vector<vector<string>> data = db.getData();
+    vector<string> headers = db.getHeaders();
 
     int cityColumnIndex = -1;
     for(int i = 0; i < headers.size(); i++){
@@ -86,17 +86,17 @@ int City::CountAccidentsInCity(string cityName, Database& db){
         }
     }
     
-    for (const vector<string>& row : data){
+    for (vector<string> row : data){
         if(cityColumnIndex < row.size() && row[cityColumnIndex] == cityName){
             count++;
         }
     }
     return count;
 }
-int City::CountAccidentsInState(string stateName, Database& db){
+int City::CountAccidentsInState(string stateName, Database db){
     int count = 0;
-    const vector<vector<string>>& data = db.getData();
-    const vector<string>& headers = db.getHeaders();
+    vector<vector<string>> data = db.getData();
+    vector<string> headers = db.getHeaders();
 
     int stateColumnIndex = -1;
     for(int i = 0; i < headers.size(); i++){
@@ -107,7 +107,7 @@ int City::CountAccidentsInState(string stateName, Database& db){
     }
 
     for (int i = 0; i < data.size(); i++) {
-        const vector<string>& row = data[i];
+        vector<string> row = data[i];
         if (row[stateColumnIndex] == stateName) {
             count++;
         }
@@ -115,10 +115,10 @@ int City::CountAccidentsInState(string stateName, Database& db){
 
     return count;
 }
-int City::CountAccidentsInCounty(string countyName, Database& db){
+int City::CountAccidentsInCounty(string countyName, Database db){
     int count = 0;
-    const vector<vector<string>>& data = db.getData();
-    const vector<string>& headers = db.getHeaders();
+    vector<vector<string>> data = db.getData();
+    vector<string> headers = db.getHeaders();
 
     int countyColumnIndex = -1;
     for(int i = 0; i < headers.size(); i++){
@@ -128,8 +128,9 @@ int City::CountAccidentsInCounty(string countyName, Database& db){
         }
     }
 
+    //Count the number of rows that match the county of the selected city
     for (int i = 0; i < data.size(); i++) {
-        const vector<string>& row = data[i];
+        vector<string> row = data[i];
         if (row[countyColumnIndex] == countyName) {
             count++;
         }
