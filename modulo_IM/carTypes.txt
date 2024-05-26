@@ -1,0 +1,36 @@
+ALFA ROMEO,high
+AUDI,high
+BMW,high
+CADILLAC,high
+CHEVROLET,medium
+CITROEN,low
+FERRARI,luxury
+FIAT,low
+FORD,medium
+HONDA,medium
+HYUNDAI,low
+INFINITI,medium
+JAGUAR,high
+JEEP,medium
+KIA,low
+LAMBORGHINI,luxury
+LAND ROVER,high
+LEXUS,medium
+LINCOLN,high
+MASERATI,luxury
+MAZDA,medium
+MERCEDES-BENZ,high
+MINI,medium
+MITSUBISHI,low
+NISSAN,low
+PEUGEOT,medium
+PORSCHE,luxury
+RENAULT,medium
+SKODA,low
+SMART,low
+SUBARU,medium
+SUZUKI,low
+TESLA,high
+TOYOTA,low
+VOLKSWAGEN,medium
+VOLVO,high
