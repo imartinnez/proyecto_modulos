@@ -1,3 +1,14 @@
+/**
+ * @author: Iñigo Martínez
+ * 
+ * Module: modulo_IM
+ * 
+ * @class Policy
+ * 
+ * This class contains detailed information about the policy, including the type of policy, the price, 
+ * the car's range level, the location, the car details, and the driver's license age among other things. 
+ * Additionally, it invokes methods from the PriceCalculator class to calculate the policy price.
+ */
 #include "Policy.hpp"
 using namespace std;
 
@@ -12,11 +23,13 @@ Policy::Policy(int policyType, double price, string carRangeLevel, string locati
 }
 
 double Policy::calculatePolicyPrice() {
+    //Instantiate an object of the Database and PriceCalculator classes
     Database db;
     PriceCalculator pc(db);
 
+    //We calculate the price of the policy by using the methods of the PriceCalculator class
     price = pc.calculatePolicyBasePrice(carDetails, carRangeLevel, driverLicenceAge, policyType);
-    pc.calculatePolicyPrice(location, price);
+    pc.calculatePolicyPrice(price, location);
 
     return price;
 }
