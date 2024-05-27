@@ -23,7 +23,7 @@ vector<string> Database::getHeaders() {
 
 
 void Database::loadCSV() {
-    ifstream file("../modulo_Database/DATABASE.csv");
+    ifstream file("modulo_Database/DATABASE.csv");
     if (!file.is_open()) {
         cout << "Error with the file" << endl;
         exit(0);

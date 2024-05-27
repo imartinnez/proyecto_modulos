@@ -32,7 +32,7 @@ void CarModelList::setCarDetails(string brand, int year) {
 }
 
 void CarModelList::showBrands() {
-    ifstream file("carTypes.txt");
+    ifstream file("modulo_IM/carTypes.txt");
     string line;
     bool header = true; // We use this variable to skip the headers
     int pos_coma;
@@ -61,7 +61,7 @@ void CarModelList::showBrands() {
 }
 
 string CarModelList::getRangeLevel() {
-    ifstream file("carTypes.txt");
+    ifstream file("modulo_IM/carTypes.txt");
     string line;
     string brand;
     bool found = false;
@@ -98,7 +98,7 @@ string CarModelList::getRangeLevel() {
 void CarModelList::showUSAStates() {
     // Open the file in read mode
     string line;
-    ifstream file("USA_States.txt");
+    ifstream file("modulo_IM/USA_States.txt");
 
     if (!file.is_open()) {
         cout << "Could not open the file." << endl;
